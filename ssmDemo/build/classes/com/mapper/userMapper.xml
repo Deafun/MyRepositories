@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.userMapper">
+
+<!-- <resultMap type="com.entity.userinfo" id="queryinfo">
+<id property="id" column="id"></id>
+<result property="username" column="username"></result>
+<result property="password" column="password"></result>
+<result property="age" column="age"></result>
+<result property="gender" column="gender"></result>
+<result property="height" column="height"></result>
+</resultMap> -->
+
+<select id="queryUser" resultMap="com.entity.userinfo">
+select user.id,user.username,user.age,user.gender,user.height from userinfo as user
+</select>
+
+<insert id="insUser" parameterType="com.entity.userinfo">
+insert into userinfo(username,password) value(#{username},#{password})
+</insert>
+
+<select id="queryUserById" resultMap="com.entity.userinfo">
+select user.id,user.username,user,age,user.gender,user.height from userinfo as user 
+where id = #{id}
+</select>
+
+<update id="updUser" >
+update userinfo set username = #{username},password = #{password} where id = #{id}
+</update>
+
+<delete id="delUserById" parameterType="com.entity.userinfo">
+delete from userinfo where id = #{id}
+</delete>
+</mapper>
